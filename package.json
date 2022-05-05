@@ -1,0 +1,21 @@
+{
+  "name": "@autotelic/pino-seq-transport",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pino-abstract-transport": "^0.5.0",
+    "seq-logging": "^1.1.1"
+  },
+  "devDependencies": {
+    "ava": "^4.2.0",
+    "sinon": "^13.0.2"
+  }
+}
