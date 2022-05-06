@@ -10,10 +10,10 @@ test('build transport', async t => {
   const logProcessor = () => {}
   const logProcessorFactorySpy = sinon.stub().returns(logProcessor)
   const loggerOpts = {
-    serverUrl: 'http://localhost:5341',
+    serverUrl: 'http://localhost:5341'
   }
 
-  const transport = createTransport({
+  createTransport({
     loggerOpts,
     messageTemplate: '{message}',
     createLogger,
@@ -40,7 +40,7 @@ test('logProcessorFactory', async t => {
     time,
     level: 30,
     msg: message,
-    stack,
+    stack
   }])
 
   await logProcessor(source)
@@ -50,7 +50,7 @@ test('logProcessorFactory', async t => {
     level: 'INFO',
     messageTemplate,
     properties: {
-      message,
+      message
     },
     exception: stack
   }))

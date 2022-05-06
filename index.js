@@ -12,15 +12,15 @@ const LEVEL_NAMES = {
 
 export const logProcessorFactory = function (logger, messageTemplate) {
   return async function (source) {
-    for await (let obj of source) {
+    for await (const obj of source) {
       const { time, level, msg, err, error, stack, ...props } = obj
       const { message: errMessage, stack: errStack, ...errorProps } = err || error || {}
       const forSeq = {
         timestamp: new Date(time),
         level: LEVEL_NAMES[level],
         messageTemplate,
-        properties: { message: msg ? msg : errMessage, ...errorProps, ...props },
-        exception: stack ? stack : errStack
+        properties: { message: msg || errMessage, ...errorProps, ...props },
+        exception: stack || errStack
       }
       logger.emit(forSeq)
     }
@@ -29,12 +29,12 @@ export const logProcessorFactory = function (logger, messageTemplate) {
 
 const defaultOpts = {
   loggerOpts: {
-    serverUrl: 'http://localhost:5341',
+    serverUrl: 'http://localhost:5341'
   },
   messageTemplate: '{message}',
   createLogger: loggerOpts => new seq.Logger(loggerOpts),
   build,
-  logProcessorFactory,
+  logProcessorFactory
 }
 
 export default async function (opts = defaultOpts) {

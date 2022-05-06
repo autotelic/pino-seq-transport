@@ -1,11 +1,14 @@
 {
   "name": "@autotelic/pino-seq-transport",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "lint": "standard",
+    "fix": "standard --fix",
+    "validate": "npm run lint && npm run test"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,13 @@
   },
   "devDependencies": {
     "ava": "^4.2.0",
-    "sinon": "^13.0.2"
+    "lint-staged": "^12.4.1",
+    "sinon": "^13.0.2",
+    "standard": "^17.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run fix"
+    ]
   }
 }
