@@ -9,17 +9,19 @@ test('build transport', async t => {
   const build = sinon.spy()
   const logProcessor = () => {}
   const logProcessorFactorySpy = sinon.stub().returns(logProcessor)
-  const serverUrl = 'http://localhost:5341'
+  const loggerOpts = {
+    serverUrl: 'http://localhost:5341',
+  }
 
   const transport = createTransport({
-    serverUrl,
+    loggerOpts,
     messageTemplate: '{message}',
     createLogger,
     build,
     logProcessorFactory: logProcessorFactorySpy
   })
 
-  t.true(createLogger.calledOnceWith({ serverUrl }))
+  t.true(createLogger.calledOnceWith(loggerOpts))
   t.true(logProcessorFactorySpy.calledOnceWith(logger, '{message}'))
   t.true(build.calledOnceWith(logProcessor))
 })

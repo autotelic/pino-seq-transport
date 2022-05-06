@@ -28,7 +28,9 @@ export const logProcessorFactory = function (logger, messageTemplate) {
 }
 
 const defaultOpts = {
-  serverUrl: 'http://localhost:5341',
+  loggerOpts: {
+    serverUrl: 'http://localhost:5341',
+  },
   messageTemplate: '{message}',
   createLogger: loggerOpts => new seq.Logger(loggerOpts),
   build,
@@ -37,7 +39,7 @@ const defaultOpts = {
 
 export default async function (opts = defaultOpts) {
   const {
-    serverUrl,
+    loggerOpts,
     messageTemplate,
     createLogger,
     build,
@@ -46,6 +48,6 @@ export default async function (opts = defaultOpts) {
     ...defaultOpts,
     ...opts
   }
-  const logger = createLogger({ serverUrl })
+  const logger = createLogger(loggerOpts)
   return build(logProcessorFactory(logger, messageTemplate))
 }

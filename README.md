@@ -15,7 +15,14 @@ import pino from 'pino'
 
 const logger = pino({
   transport: {
-    target: '@autotelic/pino-seq-transport'
+    target: '@autotelic/pino-seq-transport',
+    options: {
+      loggerOpts: {
+        serverUrl: 'http://localhost:5341'
+      }
+    }
   }
 })
 ```
+
+`loggerOpts` are passed through to `seq.Logger()` from [`seq-logging`](https://github.com/datalust/seq-logging)
