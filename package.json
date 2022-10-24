@@ -18,7 +18,7 @@
     "seq-logging": "^1.1.1"
   },
   "devDependencies": {
-    "ava": "^4.2.0",
+    "ava": "^5.0.1",
     "lint-staged": "^12.4.1",
     "sinon": "^13.0.2",
     "standard": "^17.0.0"
